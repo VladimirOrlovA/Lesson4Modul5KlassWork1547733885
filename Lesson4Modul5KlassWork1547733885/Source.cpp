@@ -4,8 +4,6 @@
 #include<time.h>
 #include<Windows.h>
 
-#define size 10
-
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 // Lesson4Modul5KlassWork1547733885
@@ -15,49 +13,30 @@ void Task1()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask1\n\n");
-	printf("Двоичный поиск в массиве\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	const int N = 10;
-	int A[N], i, j, c;
-	int L = 0, R = N - 1, m, A[N], x, flag = 0;
-
-	for (i = 0; i < N; i++)
+	const int n = 4;
+	int arr[n], i, o, s = 0;
+	
+	for (i = 0; i < n; i++)
 	{
-		A[i] = 1 + rand() % 15;
+		arr[i] = 0 + rand() % 2;
+		
+		printf("%2d", arr[i]);
 	}
 
-	// сортировка методом пузырка
-
-	for (i = 0; i < N - 1; i++)
-		for (j = N - 2; j >= i; j--)
-			if (A[j] > A[j + 1])
-			{
-				c = A[j];
-				A[j] = A[j + 1];
-				A[j + 1] = c;
-			}
-
-
-	printf("Введите искомый элемент \n");
-	scanf_s("%d", &x);
-
-	while (L <= R)
+	for (i = 0; i < n; i++)
 	{
-		m = (L + R) / 2;
-		if (A[m] == x)
-		{
-			flag = 1;
-			break;
-		}
+		o = arr[i] * pow(2, i);
 
-		if (x < A[m]) R = m - 1;
-		else L = m + 1;
-
+		s = s + o;		
 	}
 
-	if (flag) printf("Нашли: A[%d]=%d", m, A[m]);
-	else printf("Такого элемента нет");
+	printf("\n В десятичной системе : %d", s);
+
+
+	
+
 }
 
 
@@ -65,46 +44,43 @@ void Task2()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask2\n\n");
-	printf("Метод выбора\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	const int N = 10;
-	int i, j, A[N], nMin, c;
-
-	for (i = 0; i < N; i++)
+	int arr[10][10] = { 0 }, i, j, min = 0, max = 0;
+	
+	for (i = 0; i < 10; i++)
 	{
-		A[i] = 1 + rand() % 15;
+		for (j = 0; j < 10; j++)
+		{
+			arr[i][j] = 1 + rand() % 15;
+
+			printf("%d \t", arr[i][j]);
+		}
+		printf("\n");
 	}
 
-	// сортировка методом пузырка
+	printf("\n\n");
 
-	for (i = 0; i < N - 1; i++)
-		for (j = N - 2; j >= i; j--)
-			if (A[j] > A[j + 1])
-			{
-				c = A[j];
-				A[j] = A[j + 1];
-				A[j + 1] = c;
-			}
-
-
-	for (i = 0; i < N - 1; i++)
+	for (i = 0; i < 10; i++)
 	{
-		nMin = i;
-		for (j = i + 1; j < N; j++)
-			if (A[j] > A[nMin]) nMin = j;
-		if (nMin != i)
+		min = 10;
+		
+		for (j = 0; j < 10; j++)
 		{
-			c = A[i];
-			A[i] = A[nMin];
-			A[nMin] = c;
+
+			if (arr[i][j] < min)
+				min = arr[i][j];	
 		}
 
-		printf("\n  : \n\n");
+		printf("%d, ", min);
 
-		for (i = 0; i < N; i++) printf("A[%d]=%d \n", i, A[i]);
+		if (min > max)
+			max = min;
 
 	}
+
+	printf("\n\n max = %d \n\n", max);
+	
 }
 
 
@@ -112,29 +88,41 @@ void Task3()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask3\n\n");
-	printf("\n Стандартный ввод и вывод --- Ввод с клавиатуры \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	const int M = 5;
-	const int N = 4;
-	int i, j, A[M][N];
+	int const ind = 9;
 
+	int arr[ind][ind] = { 0 }, i, j, x1 = 0, x2 = 0, y;
 
-	for (i = 0; i < M; i++)
-		for (j = 0; j < N; j++)
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
 		{
-			printf("A[%d][%d]=%d \n", i, j);
-			scanf_s("%d", &A[i][j]);
+			arr[i][j] = 10 + rand() % 15;
+
+			printf("%d \t", arr[i][j]);
 		}
+		printf("\n");
+	}
+	
+	printf("\n Изменили разрядность элементов \n\n");
 
-	printf("Матрица A \n");
-
-	for (i = 0; i < M; i++)
-		for (j = 0; j < N; j++)
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
 		{
-			printf("4%d \n", A[i][j]);
-			printf("\n");
+			x1 = arr[i][j] / 10;
+			x2 = arr[i][j] % 10;
+			y = x2 * 10 + x1;
+
+			arr[i][j] = y;
+
+			printf("%d \t", arr[i][j]);
 		}
+		printf("\n");
+	}
+
+
 
 }
 
@@ -155,8 +143,43 @@ void Task5()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask5\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 9;
+
+	int arr[ind][ind] = { 0 }, i, j, , y;
+
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
+		{
+			arr[i][j] = 10 + rand() % 15;
+
+			printf("%d \t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n Изменили разрядность элементов \n\n");
+
+	
+	for (k = 0; k < ind; k++)
+	{
+		for (l = 0; l < ind; l++)
+		{
+	
+				for (i = 0; i < ind; i++)
+				{
+					for (j = 0; j < ind; j++)
+					{
+					arr[i][j] = y;
+
+			printf("%d \t", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+
 }
 
 
