@@ -207,7 +207,7 @@ void Task5()
 
 	}
 
-	printf("\n-----------------\n");
+	printf("\n--------------------------------\n\n");
 
 	for (int i = 0; i < ind; i++)
 
@@ -236,8 +236,38 @@ void Task6()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask6\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 6;
+	int arr[ind][ind], i, j, count=0;
+
+	printf("\n\nМассив %d х %d из случайных чисел : \n\n", ind, ind);
+
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
+		{
+			arr[i][j] = 1 + rand() % 9;
+			printf("%d  ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n\nВывод индексов тех элементов, значения которых больше, \nчем у стоящих справа от него => \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
+		{
+			if (arr[i][j] > arr[i + 1][j + 1])
+			{
+				printf("A[%d][%d]   ", i, j);
+				count++;
+			}
+		}
+		printf("\n");
+	}
+	printf("\nКоличество таких чисел = %d \n\n", count);
 }
 
 
@@ -245,8 +275,38 @@ void Task7()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask7\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 6;
+	int arr[ind][ind], i, j, count = 0;
+
+	printf("\n\nМассив %d х %d из случайных чисел : \n\n", ind, ind);
+
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
+		{
+			arr[i][j] = 1 + rand() % 9;
+			printf("%d  ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n\n_____________________________________ \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
+		{
+			if (arr[i][j] > arr[i + 1][j + 1])
+			{
+				printf("A[%d][%d]   ", i, j);
+				count++;
+			}
+		}
+		printf("\n");
+	}
+	printf("\nКоличество таких чисел = %d \n\n", count);
 }
 
 
