@@ -131,10 +131,37 @@ void Task4()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask4\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
+	int const ind = 9;
+	int arr[ind][ind], i, j, dec;
 
+	printf("\n\nМатрица %d x %d со случайными числами в  8-ой системе\n\n", ind, ind);
+
+	for (i = 0; i < ind; i++)
+	{
+		for (j = 0; j < ind; j++)
+		{
+			dec = 11 + rand() % 53;										// генерим числа от 8 до 77 (чтобы в дес системе не вых на 3 разряд)
+			arr[i][j] = ((dec / 8) * 10) + (dec - ((dec / 8) * 8));		// преобраз dec в oct и записываем в массив
+			printf("%2d   ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+	printf("\n\nПеревод исходной матрицы с элементами в 8-ой системе в 10-ую систему \n\n");
+
+		for (i = 0; i < ind; i++)
+		{
+			for (j = 0; j < ind; j++)
+			{
+				arr[i][j] = (arr[i][j] / 10) * 8 + (arr[i][j] % 10);
+				
+				printf("%2d   ", arr[i][j]);
+				
+			}
+			printf("\n");
+		}
 
 }
 
