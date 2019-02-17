@@ -145,38 +145,87 @@ void Task5()
 	printf("\n--------------------------------------------------------------------------\n\nTask5\n\n");
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int const ind = 9;
+	int const ind = 5;
+	int A[ind][ind] = { 0 }, count = 0, B[ind][ind] = { 0 };
 
-	int arr[ind][ind] = { 0 }, i, j, , y;
-
-	for (i = 0; i < ind; i++)
+	for (int i = 0; i < ind; i++)
 	{
-		for (j = 0; j < ind; j++)
-		{
-			arr[i][j] = 10 + rand() % 15;
+		for (int j = 0; j < ind; j++)
 
-			printf("%d \t", arr[i][j]);
+		{
+			A[i][j] = 10 + rand() % 40;
+
+			printf("%d\t", A[i][j]);
 		}
-		printf("\n");
+
+		printf("\n\n");
+
 	}
 
-	printf("\n Изменили разрядность элементов \n\n");
-
-	
-	for (k = 0; k < ind; k++)
+	for (int k = 0; k < ind; k++)
 	{
-		for (l = 0; l < ind; l++)
+		for (int p = 0; p < ind; p++)
 		{
-	
-				for (i = 0; i < ind; i++)
-				{
-					for (j = 0; j < ind; j++)
-					{
-					arr[i][j] = y;
+			count = 0;
 
-			printf("%d \t", arr[i][j]);
+			for (int i = 0; i < ind; i++)
+			{
+				for (int j = 0; j < ind; j++)
+				{
+					if (A[k][p] == A[i][j])// && A[k][p]!=0
+
+						count++;
+				}
+			}
+
+			if (count - 1 >= 2)
+
+			{
+				for (int i = 0; i < ind; i++)
+				{
+					for (int j = 0; j < ind; j++)
+					{
+						if (A[k][p] == A[i][j])
+
+							B[i][j] = -1;
+					}
+				}
+			}
 		}
-		printf("\n");
+	}
+
+	for (int k = 0; k < ind; k++)
+	{
+
+		for (int p = 0; p < ind; p++)
+
+		{
+			if (B[k][p] == -1)
+
+				A[k][p] = 0;
+		}
+
+	}
+
+	printf("\n-----------------\n");
+
+	for (int i = 0; i < ind; i++)
+
+	{
+
+		for (int j = 0; j < ind; j++)
+
+		{
+			printf("%d\t", B[i][j]);
+		}
+
+
+
+
+
+
+		printf("\n\n");
+
 	}
 
 
